@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'staff\login.css' %}">
+
+
+  </head>
+  <body>
+    <form id="login-form">
+      <div id="login"> 
+        <h2>LOGIN<hr></h2>
+        <input type="text" id="login_email" placeholder="Email">
+        <input type="password" id="login_password" placeholder="Password">
+        <button id="loginbtn">login</button>
+        <br>
+        <br>
+        <br>
+        <h1><hr></h1>
+        <div class="social">
+          <a href="" class="fa fa-youtube"></a>
+          <a href="" class="fa fa-instagram"></a>
+          <a href="" class="fa fa-facebook"></a>
+          <a href="" class="fa fa-twitter"></a>
+        </div>
+      </div>
+    </form>
+    
+    <script src="{% static 'staff/login.js' %}"></script>
+  </body>
+</html>

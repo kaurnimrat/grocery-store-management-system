@@ -1,0 +1,88 @@
+body {
+
+    background: url("https://th.bing.com/th/id/OIP.N8zkcqQYaX4OwSWwu4Q1YwHaE7?rs=1&pid=ImgDetMain");
+    background-size: cover;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#login {
+    width: 400px;
+    height: auto;
+    background-color: grey;
+    font-family: arial;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+    margin-top: 130px;
+}
+
+#login h2,
+h3 {
+    color: rgb(33, 28, 77);
+}
+
+input[type="email"] {
+    width: 300px;
+    border-radius: 20px;
+    border: 1px solid rgb(118, 12, 129);
+    font-size: medium;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+input[type="password"] {
+    width: 300px;
+    border-radius: 20px;
+    border: 1px solid rgb(118, 12, 129);
+    font-size: medium;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+#loginbtn {
+    background-color: white;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(to right, rgb(59, 12, 129), rgb(178, 64, 11));
+    padding: 10px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: large;
+    transition: 1s ease;
+}
+
+#loginbtn:hover {
+    background: linear-gradient(to right, rgb(178, 64, 11), rgb(159, 77, 210));
+}
+
+.fa-youtube,
+.fa-instagram,
+.fa-facebook,
+.fa-twitter {
+    color: rgb(42, 28, 151);
+}
+
+.social {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+}
+
+.social a {
+    text-decoration: none;
+    transition: 0.1s ease;
+    font-size: xx-large;
+    color: rgb(184, 59, 72);
+}
+
+.social a:hover {
+    color: rgb(65, 13, 24);
+} 
