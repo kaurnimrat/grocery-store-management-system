@@ -255,6 +255,97 @@ main {
     color: orangered;
 }
 
+.carts-container{
+    margin-top: 4rem;
+    display: flex;
+    /* grid-template-columns: auto 66%; */
+    /* grid-gap: 3rem; */
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.shopping-cart{
+    box-shadow: 0px 4px 16px rgba(17,17,26,0.1), 0px 8px 24px rgba(17,17,26,0.1), 0px 16px 56px rgba(17,17,26,0.1);
+    width: 30%;
+}
+
+.shopping-cart .box {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    margin: 1rem 0;
+    justify-content: space-between;
+}
+
+.shopping-cart .box img {
+    height: 5rem;
+}
+
+.shopping-cart .box .la-trash {
+    font-size: 2rem;
+    position: absoulte;
+    top: 50%;
+    right: 2rem;
+    cursor: position;
+    color: var(--lighting-color);
+    transform: translateY(-50%);
+}
+
+.shopping-cart .box .fa-trash:hover {
+    color: var(--orange);
+}
+
+.shopping-cart .box .content h3 {
+    color: var(--black);
+    font-size: 1.7rem;
+    padding-bottom: 1rem;
+}
+.shopping-cart .box .header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.shopping-cart .box .header h3 {
+    color: var(--black);
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    display: block;
+}
+.shopping-cart .box .header i {
+    font-size: 2rem;
+    position: absoulte;
+    top: -50%;
+    right: 2rem;
+    cursor: position;
+    color: var(--lighting-color);
+    transform: translateY(-50%);
+}
+
+.shopping-cart .box .content span {
+    color: var(--lighting-color);
+    font-size: 1.6rem;
+
+}
+
+.shopping-cart .box .content .quantity {
+    padding-left: 1rem;
+}
+
+.shopping-cart .total {
+    font-size: 2.5rem;
+    padding: 1rem 0;
+    text-align: center;
+    color: var(--black);
+}
+
+.shopping-cart .btn {
+    display: block;
+    text-align: center;
+    margin: 1rem;
+}
+
 .jobs-grid {
     margin-top: 4rem;
     display: grid;
