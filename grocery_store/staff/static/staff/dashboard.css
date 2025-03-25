@@ -435,7 +435,7 @@ span.indicator.even{
     display: flex;
     align-items: center;
     padding: .5rem;
-    font-size: .85rem;
+    font-size: 1rem;
     color: #444;
     font-weight: 500;
 }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'staff\dashboard.css' %}">
+</head>
+
+<body>
+    <input type="checkbox" name="" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-flex">
+                <img src="https://img.freepik.com/premium-vector/grocery-store-logo-template-with-shopping-basket-food_884185-63.jpg"
+                    alt="">
+
+                <div class="brand-icons">
+                    <span class="las la-bell"></span>
+                    <span class="las la-user-circle"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-main">
+            <div class="sidebar-user">
+                <img src="https://th.bing.com/th/id/OIP.UQF_ddj3AmPfUlon2g9_HAHaLG?w=115&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    alt="">
+                <div>
+                    <h3>Adam Johnson</h3>
+                    <span>adamjohnson@gmail.com</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-head">
+                    <span>Dashboard</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="orders">
+                            <span class="las la-balance-scale"></span>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sale">
+                            <span class="las la-chart-pie"></span>
+                            Sale
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="menu-head">
+                    <span>Applications</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="inventory">
+                            <span class="las la-calendar"></span>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="inventory">
+                            <span class="las la-users"></span>
+                            Add Stock
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="las la-shopping-cart"></span>
+                            Daily Report
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+
+            <div class="menu-toggle">
+                <label for="sidebar-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+            </div>
+
+            <div class="header-icons">
+                <span class="las la-search"></span>
+                <span class="las la-bookmark"></span>
+                <span class="las la-sms"></span>
+            </div>
+        </header>
+        <main>
+            <div class="jobs">
+                <h2>Order<small>See all order available <span class="las la-arrow-right"></span></small></h2>
+
+                <div class="table-responsive">
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <span class="indicator"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        
+                                        customer 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        
+                                        product 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        Time
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        Quantity
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button>price</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% for order in orders %}
+                            <tr>
+                                <td>
+                                    <div>
+                                        <span class="indicator"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        
+                                        {{ order.name }} 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        
+                                        {{ order.total }} 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                    Time
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        Quantity
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button>price</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                            
+
+
+                            
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
