@@ -19,7 +19,7 @@
     gap: 1rem;
     position: relative;
     margin: 1rem 0;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .shopping-cart .box img {
@@ -69,13 +69,10 @@
 .shopping-cart .box .content span {
     color: var(--lighting-color);
     font-size: 1.6rem;
-
 }
-
 .shopping-cart .box .content .quantity {
     padding-left: 1rem;
 }
-
 .shopping-cart .total {
     font-size: 2.5rem;
     padding: 1rem 0;

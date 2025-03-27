@@ -9,5 +9,6 @@ urlpatterns = [
     path("inventory",views.inventoryPage),
     path("orders",views .orderPage),
     path("addstock",views.addStockPage),
+    path("sale",views.salePage),
 ]
 

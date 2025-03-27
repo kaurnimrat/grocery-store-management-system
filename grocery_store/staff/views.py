@@ -22,7 +22,7 @@ def landingPage(request):
         context["products"].append(temp)
     
 
-    print(context)
+        print(context)
     return render(request, "landingPage.html", context)
 
 def loginPage(request):
@@ -40,8 +40,10 @@ def dashboardPage(request):
             continue
         else:
             temp = {
+                'id' : order.id,
                 "name": order.name,
                 "items": [],
+                'total' :0,
             }
             total = 0
             for item in order.items.all():
@@ -74,7 +76,25 @@ def login_view(request):
     return JsonResponse({'success': False, 'message': 'invalid request method'})
 
 def inventoryPage(request):
-    return render(request,"inventory.html")
+    context = {
+        'items' : [],
+    }
+
+    items = Item.objects.all()
+    print(items)
+    for item in items:
+        temp = {
+            'name' : item.name,
+            'category' : item.category.name,
+            'price' : item.price,
+            'quantity' :  item.quantity,
+            'stock_price': item.quantity*item.price,
+        }
+        context["items"].append(temp)
+    
+    print(context)
+    
+    return render(request,"inventory.html", context)
 
 def orderPage(request):
     context = {
@@ -85,18 +105,21 @@ def orderPage(request):
     print(orders)
     for order in orders:
         temp = {
+            'id' : order.id,
             "name": order.name,
             "items": [],
+            "total_items" : 0
         }
         total = 0
+
         for item in order.items.all():
             temp_item = {
                 "name" : item.name,
                 "price": item.price,
-
             }
             total += item.price
             temp["items"].append(temp_item)
+            temp["total_items"] += 1
             
         temp["total"]=total
         context["orders"].append(temp)
@@ -104,3 +127,6 @@ def orderPage(request):
 
 def addStockPage(request):
     return render(request,"add_stock.html")
+
+def salePage(request):
+    return render(request,"sale.html")

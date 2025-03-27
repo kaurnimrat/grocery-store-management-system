@@ -114,29 +114,27 @@
                                 </td>
                                 <td>
                                     <div>
-                                        
-                                        customer 
+                                        CUSTOMER
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        
-                                        product 
+                                        PRODUCTS
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Time
+                                        DESCRIPTION
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Quantity
+                                        QUANTITY
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <button>price</button>
+                                        PRICE
                                     </div>
                                 </td>
                             </tr>
@@ -149,8 +147,7 @@
                                 </td>
                                 <td>
                                     <div>
-                                        
-                                        {{ order.name }} 
+                                        {{ order.name|capfirst }} 
                                     </div>
                                 </td>
                                 <td>
@@ -161,17 +158,19 @@
                                 </td>
                                 <td>
                                     <div>
-                                    Time
+                                        {% for item in order.items %}
+                                           {{item.name| capfirst}}, 
+                                        {% endfor %}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Quantity
+                                        {{ order.total_items }}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <button>price</button>
+                                        <button>{{ order.total }}</button>
                                     </div>
                                 </td>
                             </tr>

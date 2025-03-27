@@ -115,31 +115,33 @@
                                 <td>
                                     <div>
 
-                                        Item1
+                                        Item name
                                     </div>
                                 </td>
                                 <td>
                                     <div>
 
-                                        Cat1
+                                        Category
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Price1
+                                        Price
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Quantity1
+                                        Quantity
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <button>Add More</button>
+                                        <button>Stock Price</button>
                                     </div>
                                 </td>
                             </tr>
+                            {% for item in items %}
+                            
                             <tr>
                                 <td>
                                     <div>
@@ -149,139 +151,33 @@
                                 <td>
                                     <div>
 
-                                        Item1
+                                        {{ item.name }}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
 
-                                        Cat1
+                                        {{ item.category }}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Price1
+                                        {{ item.price }}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        Quantity1
+                                        {{ item.quantity }}
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <button>Add More</button>
+                                        <button>{{ item.stock_price }}</button>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <span class="indicator"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Item1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Cat1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Price1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Quantity1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <button>Add More</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <span class="indicator"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Item1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Cat1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Price1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Quantity1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <button>Add More</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <span class="indicator"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Item1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-
-                                        Cat1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Price1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        Quantity1
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <button>Add More</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            
-
-
-                            
-                            
-                            
+                            {% endfor %}
+  
                         </tbody>
                     </table>
                 </div>
