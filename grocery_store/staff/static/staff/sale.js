@@ -25,7 +25,7 @@ function closeSidebar() {
 
 var options = {
     series: [{
-    data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+    data: [400, 430, 448, 470]
   }],
     chart: {
     type: 'bar',
@@ -49,14 +49,16 @@ var options = {
 
   document .addEventListener("DOMContentLoaded",function() {
 
-  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  var chart = new ApexCharts(document.querySelector("#bar-chart"), options);
   chart.render();
 
+  })
 
 // AREA CHART
  
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#bar-chart"), options);
+// chart.render();
+
 var options = {
   series: [{
   name: 'TEAM A',
@@ -110,5 +112,5 @@ tooltip: {
 };
 
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
+var chart = new ApexCharts(document.querySelector("#area-chart"), options);
 chart.render();
