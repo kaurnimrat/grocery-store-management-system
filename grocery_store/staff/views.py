@@ -79,7 +79,7 @@ def inventoryPage(request):
     context = {
         'items' : [],
     }
-
+ 
     items = Item.objects.all()
     print(items)
     for item in items:
@@ -127,6 +127,28 @@ def orderPage(request):
 
 def addStockPage(request):
     return render(request,"add_stock.html")
+
+@csrf_exempt
+def addStock_view(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        item_name = data.get('item_name')
+        item_category = data.get('item_category')
+        item_price = data.get('item_price')
+        item_quantity = data.get('item_quantity')
+
+        item_name = str(item_name).lower()
+        item_category = str(item_category).lower()
+
+        cat, created_cat = Category.objects.get_or_create(name=item_category)
+
+        item, created_item = Item.objects.get_or_create(name=item_name, category=cat, price=item_price, quantity=item_quantity)
+        
+        if created_item:
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, 'message': 'Item already exited'})
+    
 
 def salePage(request):
     return render(request,"sale.html")

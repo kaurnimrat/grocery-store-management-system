@@ -12,23 +12,24 @@
     <body>
         <div class="container">
             <div class="title"> Addstock </div>
-            <form action="#">
+            <form id="add_stock">
+                {% csrf_token %}
                 <div class="user-details">        
                     <div class="input-box">
                         <span class="details">Item:</span>
-                        <input type="text" placeholder="Enter item name"required>
+                        <input type="text" name="item_name" placeholder="Enter item name"required>
                 </div>   
                  <div class="input-box">
                     <span class="details">Cat:</span>
-                    <input type="text" placeholder="Enter cat name"required>
+                    <input type="text" name="item_category" placeholder="Enter cat name"required>
             </div>
                 <div class="input-box">
                 <span class="details">Price:</span>
-                <input type="text" placeholder="Enter price"required>
+                <input type="text" name="item_price" placeholder="Enter price" required>
         </div>
         <div class="input-box">
             <span class="details">Quantity:</span>
-            <input type="text" placeholder="Enter Quantity"required>
+            <input type="text" name="item_quantity" placeholder="Enter Quantity"required>
     </div>
     </div>
     <div class="button">
@@ -36,5 +37,10 @@
     </div>
             </form>
         </div>
+
+    
+        <script src="{% static "staff/add_stock.js" %}"></script>
     </body>
+
+
 </html>
