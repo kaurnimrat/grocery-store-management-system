@@ -137,7 +137,7 @@ def addStock_view(request):
         item_price = data.get('item_price')
         item_quantity = data.get('item_quantity')
 
-        item_name = str(item_name).lower()
+        item_name = str(item_).lower()
         item_category = str(item_category).lower()
 
         cat, created_cat = Category.objects.get_or_create(name=item_category)
@@ -152,3 +152,6 @@ def addStock_view(request):
 
 def salePage(request):
     return render(request,"sale.html")
+
+def dailyreportPage(request):
+    return render(request,"dailyreport.html")
