@@ -1,119 +1,112 @@
 // SIDEBAR TOGGLE
 
 var sidebarOpen = false;
-var sidebar = document.getElementById("#sidebar");
+var sidebar = document.getElementById("sidebar");
 
 function openSidebar() {
-    if(!sidebarOpen) {
-        sidebar.classlist.add("sidebar-responsive");
+    if (!sidebarOpen) {
+        sidebar.classList.add("sidebar-responsive");
         sidebarOpen = true;
     }
 }
 
 function closeSidebar() {
-    if(!sidebarOpen) {
-        sidebar.classlist.remove("sidebar-responsive");
+    if (sidebarOpen) {
+        sidebar.classList.remove("sidebar-responsive");
         sidebarOpen = false;
     }
 }
 
+// --------- CHARTS ----------
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Get data from Django template
+    const topProductsData = JSON.parse(document.getElementById('top-products-data').textContent);
+    const salesData = JSON.parse(document.getElementById('sales-data').textContent);
 
-//--------- CHARTS ----------
-
-//BAR CHART
-
-var options = {
-    series: [{
-    data: [400, 430, 448, 470]
-  }],
-    chart: {
-    type: 'bar',
-    height: 350
-  },
-  plotOptions: {
-    bar: {
-      borderRadius: 4,
-      borderRadiusApplication: 'end',
-      horizontal: true,
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  xaxis: {
-    categories: ['vegetables', 'fruits', 'dairy products', 'other'
-    ],
-  }
-  };
-
-
-  var options2 = {
-    series: [{
-    name: 'TEAM A',
-    type: 'area',
-    data: [44, 55, 31, 47, 31, 43, 26, 41, 31, 47, 33]
-  }, {
-    name: 'TEAM B',
-    type: 'line',
-    data: [55, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43]
-  }],
-    chart: {
-    height: 350,
-    type: 'line',
-  },
-  stroke: {
-    curve: 'smooth'
-  },
-  fill: {
-    type:'solid',
-    opacity: [0.35, 1],
-  },
-  labels: ['Dec 01', 'Dec 02','Dec 03','Dec 04','Dec 05','Dec 06','Dec 07','Dec 08','Dec 09 ','Dec 10','Dec 11'],
-  markers: {
-    size: 0
-  },
-  yaxis: [
-    {
-      title: {
-        text: 'Series A',
-      },
-    },
-    {
-      opposite: true,
-      title: {
-        text: 'Series B',
-      },
-    },
-  ],
-  tooltip: {
-    shared: true,
-    intersect: false,
-    y: {
-      formatter: function (y) {
-        if(typeof y !== "undefined") {
-          return  y.toFixed(0) + " points";
+    // BAR CHART - Top Products
+    var barChartOptions = {
+        series: [{
+            data: topProductsData.map(p => p.quantity)
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                borderRadiusApplication: 'end',
+                horizontal: true,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: topProductsData.map(p => p.name),
         }
-        return y;
-      }
-    }
-  }
-  };
-  
+    };
 
-  document .addEventListener("DOMContentLoaded",function() {
-  
-  var chart = new ApexCharts(document.querySelector("#bar-chart"), options);
-  chart.render();
-  
-var chart2 = new ApexCharts(document.querySelector("#area-chart"), options2);
-chart2.render();
+    var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+    barChart.render();
 
-  })
+    // AREA CHART - Orders
+    var areaChartOptions = {
+        series: [
+            {
+                name: 'Sales',
+                type: 'area',
+                data: salesData.sales
+            },
+            {
+                name: 'Purchases',
+                type: 'line',
+                data: salesData.purchases
+            }
+        ],
+        chart: {
+            height: 350,
+            type: 'line',
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        fill: {
+            type: 'solid',
+            opacity: [0.35, 1],
+        },
+        labels: salesData.dates,
+        markers: {
+            size: 0
+        },
+        yaxis: [
+            {
+                title: {
+                    text: 'Sales',
+                },
+            },
+            {
+                opposite: true,
+                title: {
+                    text: 'Purchases',
+                },
+            },
+        ],
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " orders";
+                    }
+                    return y;
+                }
+            }
+        }
+    };
 
-// AREA CHART
- 
-// var chart = new ApexCharts(document.querySelector("#bar-chart"), options);
-// chart.render();
-
-
+    var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
+    areaChart.render();
+});

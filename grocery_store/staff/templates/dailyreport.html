@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Admin Dashboard</title>
 
-        <!--Monseerat Font-->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@0,100..900;1,100.900&display=swap">;
-         
-         {% comment %} Material Icons  {% endcomment %}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
 
-          
-         <!--Custom CSS-->
-         <link rel="stylesheet" href="{% static 'staff\sale.css' %}">
-    </head>
-    <body>
-       <div class="grid-container">
+    <!--Monseerat Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@0,100..900;1,100.900&display=swap">
+
+    {% comment %} Material Icons {% endcomment %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'staff\sale.css' %}">
+</head>
+
+<body>
+    <div class="grid-container">
 
         <!--Header-->
         <header class="header">
-            <div class="menu-icon"  onclick="openSidebar()">
+            <div class="menu-icon" onclick="openSidebar()">
                 <span class="material-icons-outlined">menu</span>
             </div>
             <div class="header-left">
@@ -31,61 +33,46 @@
                 <span class="material-icons-outlined">notifications</span>
                 <span class="material-icons-outlined">email</span>
                 <span class="material-icons-outlined">account_circle</span>
-          
+
             </div>
-             
+
         </header>
-        <!--End Header--> 
+        <!--End Header-->
 
         <!--Sidebar-->
         <aside id="sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
-                    <span class="material-icons-outlined">shopping_cart</span> STORE
+                    <span class="material-icons-outlined">shopping_cart</span> Daily Report
                 </div>
-                <span class="material-icons-outlined" onclick="closeSidebar()">close</span> 
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
             </div>
 
             <ul class="sidebar-list">
-            <li class="sidebar-list-item">
                 <a href="dashboard">
-                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                    <li class="sidebar-list-item">
+                        <span class="material-icons-outlined">dashboard</span> Dashboard
+                    </li>
                 </a>
-            </li>
-            <li class="sidebar-list-item">
                 <a href="inventory">
-                <span class="material-icons-outlined">inventory_2</span> Products
+                    <li class="sidebar-list-item">
+                        <span class="material-icons-outlined">inventory_2</span> Products
+                    </li>
                 </a>
-            </li>
 
-            <li class="sidebar-list-item">
-                <span class="material-icons-outlined">category</span> Categories
-            </li>
-
-            <li class="sidebar-list-item">
                 <a href="orders">
-                <span class="material-icons-outlined">groups</span> Customers
-            </a>
-            </li>
-
-            <li class="sidebar-list-item">
-                <span class="material-icons-outlined">fact_check</span> Inventory
-            </li>
-
-            <li class="sidebar-list-item">
-                <a href="sale">
-                <span class="material-icons-outlined">poll</span> sale
+                    <li class="sidebar-list-item">
+                        <span class="material-icons-outlined">groups</span> Orders
+                    </li>
                 </a>
-            </li>
 
-            <li class="sidebar-list-item">
-                <span class="material-icons-outlined">settings</span> Settings
-            </li>
+                <a href="sale">
+                    <li class="sidebar-list-item">
+                        <span class="material-icons-outlined">poll</span> sale
+                    </li>
+                </a>
 
-
-
-
-        </ul>
+            </ul>
         </aside>
         <!--End Sidebar-->
 
@@ -146,12 +133,13 @@
         </main>
         <!--End Main-->
 
-       </div>
-      
-       <!--Scripts-->
-       <!--ApexCharts-->
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.5.0/apexcharts.min.js"></script>
-       <!--Custom JS-->
-       <script src="{% static "staff/sale.js" %}"></script>
-    </body>
-     </html>
+    </div>
+
+    <!--Scripts-->
+    <!--ApexCharts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.5.0/apexcharts.min.js"></script>
+    <!--Custom JS-->
+    <script src="{% static "staff/sale.js" %}"></script>
+</body>
+
+</html>

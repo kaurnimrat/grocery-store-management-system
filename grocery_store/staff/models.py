@@ -13,6 +13,7 @@ class Item(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     price=models.FloatField() 
     quantity=models.IntegerField()
+    url=models.URLField(default="https://cdn-icons-png.flaticon.com/512/263/263142.png")
 
     def __str__(self):
         return f"{self.name} : {self.category.name} :    {self.price}/-"

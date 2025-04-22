@@ -17,7 +17,7 @@
     <div class="sidebar">
         <div class="sidebar-brand">
             <div class="brand-flex">
-                <img src="https://img.freepik.com/premium-vector/grocery-store-logo-template-with-shopping-basket-food_884185-63.jpg"
+                <img src="https://img.freepik.com/premium-vector/grocery-store-logo-template-with-shopping-basket-food_884185-63.jpg" 
                     alt="">
 
                 <div class="brand-icons">
@@ -195,7 +195,11 @@
                     
                     <div class="box">
                         <i class="las la-trash"></i>
-                        <img src="https://th.bing.com/th/id/OIP.i2s9YDTln48fqLWzk7BtwQHaIP?w=193&h=214&c=7&r=0&o=5&dpr=1.3&pid=1.7">
+
+                        <!-- <img src="https://th.bing.com/th/id/OIP.i2s9YDTln48fqLWzk7BtwQHaIP?w=193&h=214&c=7&r=0&o=5&dpr=1.3&pid=1.7"> -->
+                        
+                        <img
+                         src="{{ item.url }}"> 
                         <div class="content">
                             <h3>{{ item.name }}</h3>
                             <span class="price">Rs {{ item.price }}/-</span>

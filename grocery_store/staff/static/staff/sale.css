@@ -74,6 +74,11 @@ body{
     color: #9e9ea4;
 }
 
+a{
+    text-decoration: none;
+    color: #9e9ea4 !important;
+}
+
 .sidebar-list-item a{
     text-decoration: none;
     color: #9e9ea4 !important;
