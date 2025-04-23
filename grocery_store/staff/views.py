@@ -141,7 +141,7 @@ def addStock_view(request):
         item_price = data.get('item_price')
         item_quantity = data.get('item_quantity')
 
-        item_name = str(item_).lower()
+        item_name = str(item).lower()
         item_category = str(item_category).lower()
 
         cat, created_cat = Category.objects.get_or_create(name=item_category)
@@ -188,7 +188,7 @@ def salePage(request):
 
     print(daily_orders)
     sales_data = {
-        "labels": [(entry["day"]).strftime('%b %d') for entry in daily_orders],
+        "labels": [(entry["day"]).strtime('%b %d') for entry in daily_orders],
         "values": [entry["total"] for entry in daily_orders],
     }
 
@@ -200,7 +200,6 @@ def salePage(request):
         "top_products": top_products,
         "sales_data": sales_data,
     }
-
     print(context)
     return render(request, "sale.html", context)
 
