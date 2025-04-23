@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -27,6 +27,8 @@ def landingPage(request):
     return render(request, "landingPage.html", context)
 
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard")
     return render(request, "login.html")
 
 def dashboardPage(request):
@@ -173,7 +175,7 @@ def salePage(request):
     from django.utils import timezone
     from datetime import timedelta
     today = timezone.now()
-    seven_days_ago = today - timedelta(days=6)
+    seven_days_ago = today - timedelta(days=400)
 
     daily_orders = (
         Order.objects
@@ -184,8 +186,9 @@ def salePage(request):
         .order_by('day')
     )
 
+    print(daily_orders)
     sales_data = {
-        "labels": [entry["day"].strftime('%b %d') for entry in daily_orders],
+        "labels": [(entry["day"]).strftime('%b %d') for entry in daily_orders],
         "values": [entry["total"] for entry in daily_orders],
     }
 

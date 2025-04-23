@@ -16,13 +16,15 @@ function closeSidebar() {
         sidebarOpen = false;
     }
 }
+const topProductsData = JSON.parse(document.getElementById('top-products-data').textContent);
+const salesData = JSON.parse(document.getElementById('sales-data').textContent);
+console.print(topProductsData)
 
 // --------- CHARTS ----------
 
 document.addEventListener("DOMContentLoaded", function () {
     // Get data from Django template
-    const topProductsData = JSON.parse(document.getElementById('top-products-data').textContent);
-    const salesData = JSON.parse(document.getElementById('sales-data').textContent);
+
 
     // BAR CHART - Top Products
     var barChartOptions = {
