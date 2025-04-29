@@ -1,0 +1,131 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'staff\dashboard.css' %}">
+<input type="checkbox" name="" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-flex">
+                <img src="https://img.freepik.com/premium-vector/grocery-store-logo-template-with-shopping-basket-food_884185-63.jpg" 
+                    alt="">
+
+                <div class="brand-icons">
+                    <span class="las la-bell"></span>
+                    <span class="las la-user-circle"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-main">
+            <div class="sidebar-user">
+                <img src="https://th.bing.com/th/id/OIP.UQF_ddj3AmPfUlon2g9_HAHaLG?w=115&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    alt="">
+                <div>
+                    <h3>{{ user.username }}</h3>
+                    <span>{{ user.email }}</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-head">
+                    <span>Dashboard</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{% url "orders" %}">
+                            <span class="las la-balance-scale"></span>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url "sale" %}">
+                            <span class="las la-chart-pie"></span>
+                            Sale
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="menu-head">
+                    <span>Applications</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{% url "inventory" %}">
+                            <span class="las la-calendar"></span>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url "addstock" %}">
+                            <span class="las la-users"></span>
+                            Add Stock
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url "dailyreport" %}">
+                            <span class="las la-shopping-cart"></span>
+                            Daily Report
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="menu-head">
+                    {% comment %} <span>Applications</span> {% endcomment %}
+                    <span>Account</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="las la-sign-out-alt"></span>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const logoutLink = document.querySelector('a[href="{% url "logout" %}"]');
+        
+            if (logoutLink) {
+                logoutLink.addEventListener("click", function(e) {
+                    e.preventDefault();
+        
+                    if (confirm("Are you sure you want to logout?")) {
+                        fetch("{% url 'ajax_logout' %}", {
+                            method: "POST",
+                            headers: {
+                                "X-CSRFToken": getCookie("csrftoken"),
+                                "Content-Type": "application/json",
+                            },
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = "{% url 'login' %}";  // or your login URL
+                            } else {
+                                alert("Logout failed.");
+                            }
+                        });
+                    }
+                });
+            }
+        
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Check if this cookie string begins with the name we want
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+        </script>

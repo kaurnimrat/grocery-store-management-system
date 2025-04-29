@@ -45,22 +45,27 @@
         </div>
 
         <ul class="sidebar-list">
-            <a href="dashboard">
+            <a href="{% url "dashboard" %}">
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined">dashboard</span> Dashboard
                 </li>
             </a>
-            <a href="inventory">
+            <a href="{% url "inventory" %}">
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined">inventory_2</span> Products
                 </li>
             </a>
-            <a href="orders">
+            <a href="{% url "orders" %}">
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined">groups</span> Orders
                 </li>
             </a>
-            <a href="dailyreport">
+            <a href="{% url "sale" %}">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">poll</span> sale
+                </li>
+            </a>
+            <a href="{% url "dailyreport" %}">
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined">poll</span> Daily Report
                 </li>

@@ -4,101 +4,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Leo Admin Dashboard</title>
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'staff\dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'staff/dashboard.css' %}">
+
+    <style>
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 350px;
+        }
+        .modal-content input, .modal-content select, .modal-content button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+        }
+    </style>
 </head>
 
 <body>
-    <input type="checkbox" name="" id="sidebar-toggle">
-
-    <div class="sidebar">
-        <div class="sidebar-brand">
-            <div class="brand-flex">
-                <img src="https://img.freepik.com/premium-vector/grocery-store-logo-template-with-shopping-basket-food_884185-63.jpg" 
-                    alt="">
-
-                <div class="brand-icons">
-                    <span class="las la-bell"></span>
-                    <span class="las la-user-circle"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="sidebar-main">
-            <div class="sidebar-user">
-                <img src="https://th.bing.com/th/id/OIP.UQF_ddj3AmPfUlon2g9_HAHaLG?w=115&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                    alt="">
-                <div>
-                    <h3>Adam Johnson</h3>
-                    <span>adamjohnson@gmail.com</span>
-                </div>
-            </div>
-
-            <div class="sidebar-menu">
-                <div class="menu-head">
-                    <span>Dashboard</span>
-                </div>
-                <ul>
-                    <li>
-                        <a href="orders">
-                            <span class="las la-balance-scale"></span>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="sale">
-                            <span class="las la-chart-pie"></span>
-                            Sale
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="menu-head">
-                    <span>Applications</span>
-                </div>
-                <ul>
-                    <li>
-                        <a href="inventory">
-                            <span class="las la-calendar"></span>
-                            Inventory
-                        </a>
-                    </li>
-                    <li>
-                        <a href="inventory">
-                            <span class="las la-users"></span>
-                            Add Stock
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dailyreport">
-                            <span class="las la-shopping-cart"></span>
-                            Daily Report
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
+    {% include "components/sidebar.html" %}
 
     <div class="main-content">
-        <header>
-
-            <div class="menu-toggle">
-                <label for="sidebar-toggle">
-                    <span class="las la-bars"></span>
-                </label>
-            </div>
-
-            <div class="header-icons">
-                <span class="las la-search"></span>
-                <span class="las la-bookmark"></span>
-                <span class="las la-sms"></span>
-            </div>
-        </header>
+        {% include "components/header.html" %}
         <main>
 
             <div class="page-header">
@@ -106,15 +47,12 @@
                     <h1>Staff Dashboard</h1>
                     <small>Monitor key metrics. Check reporting and review insights</small>
                 </div>
-
                 <div class="header-actions">
                     <button>
-                        <span class="las la-file-export"></span>
-                        Export
+                        <span class="las la-file-export"></span> Export
                     </button>
                     <button>
-                        <span class="las la-tools"></span>
-                        Settings
+                        <span class="las la-tools"></span> Settings
                     </button>
                 </div>
             </div>
@@ -124,12 +62,10 @@
                     <div class="card-flex">
                         <div class="card-info">
                             <div class="card-head">
-                                <span>purchases</span>
+                                <span>Purchases</span>
                                 <small>Number of purchases</small>
                             </div>
-
-                            <h2>17,663</h2>
-
+                            <h2>{{ total_purchases }}</h2>
                             <small>2% less purchases</small>
                         </div>
                         <div class="card-chart danger">
@@ -143,11 +79,9 @@
                         <div class="card-info">
                             <div class="card-head">
                                 <span>Sales</span>
-                                <small>value of today's orders</small>
+                                <small>Value of today's orders</small>
                             </div>
-
-                            <h2>Rs.46,085</h2>
-
+                            <h2>Rs.{{ total_sales }}</h2>
                             <small>2% less refund</small>
                         </div>
                         <div class="card-chart success">
@@ -157,18 +91,14 @@
                 </div>
 
                 <div class="card-single">
-                    <a href="inventory">
-
+                    <a href="{% url 'inventory' %}">
                         <div class="card-flex">
                             <div class="card-info">
                                 <div class="card-head">
                                     <span>Available Stock</span>
-                                    <small>click to view Stock</small>
+                                    <small>Click to view Stock</small>
                                 </div>
-
-                                <h2>Rs 4,523.11</h2>
-
-                                <small></small>
+                                <h2>Rs {{ stock_value }}</h2>
                             </div>
                             <div class="card-chart yellow">
                                 <span class="las la-chart-line"></span>
@@ -176,55 +106,258 @@
                         </div>
                     </a>
                 </div>
+                <div class="card-single">
+                    <div class="card-flex">
+                        <div class="card-info">
+                            <div class="card-head">
+                                <span>Paid Orders</span>
+                                <small>Orders marked as paid</small>
+                            </div>
+                            <h2>{{ paid_orders }}</h2>
+                            <small>Up from yesterday</small>
+                        </div>
+                        <div class="card-chart info">
+                            <span class="las la-check-circle"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Create Cart Button -->
+            <button id="newCartBtn" class="btn">Create New Cart</button>
+
+            <!-- Modal for Cart -->
+            <div id="cartModal" class="modal">
+                <div class="modal-content">
+                    <h2>Create New Cart</h2>
+                    <form id="cartForm">
+                        {% csrf_token %}
+                        <label for="customer_name">Customer Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" required>
             
+                        <div id="itemsContainer">
+                            <div class="item-group">
+                                <label>Select Item:</label>
+                                <select name="item">
+                                    {% for product in products %}
+                                    <option value="{{ product.id }}" data-price="{{ product.price }}">{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
             
+                                <label>Quantity:</label>
+                                <input type="number" name="quantity" min="1" value="1">
+                            </div>
+                        </div>
+            
+                        <button type="button" onclick="addItem()">+ Add Another Item</button>
+            
+                        <!-- ✅ New checkbox for marking as paid -->
+                        <label>
+                            <input type="checkbox" id="is_paid" name="is_paid"> Mark as Paid
+                        </label>
+            
+                        <button type="submit">Save</button>
+                        <button type="button" onclick="closeModal()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Existing Orders -->
             <div class="carts-container">
-                
-                {% for order in orders %}   
-                
-                <div class="shopping-cart">
-                    <div class="box">
-                        <div class="header">
-                            <h3>{{ order.name }}</h3>
-                            <i class="las la-trash"></i>
+                {% for order in orders %}
+                <div class="shopping-cart" data-order-id="{{ order.id }}">
+                    <div class="box header">
+                        <h3>{{ order.name }}</h3>
+                        <div class="cart-actions">
+                            <button class="edit-btn">✏️ Edit</button>
+                            <button class="delete-btn">🗑️ Delete</button>
                         </div>
                     </div>
                     {% for item in order.items %}
-                    
                     <div class="box">
-                        <i class="las la-trash"></i>
-
-                        <!-- <img src="https://th.bing.com/th/id/OIP.i2s9YDTln48fqLWzk7BtwQHaIP?w=193&h=214&c=7&r=0&o=5&dpr=1.3&pid=1.7"> -->
-                        
-                        <img
-                         src="{{ item.url }}"> 
+                        <img src="{{ item.url }}">
                         <div class="content">
                             <h3>{{ item.name }}</h3>
                             <span class="price">Rs {{ item.price }}/-</span>
-                            <span class="quantity">qty: 1</span>
+                            <span class="quantity">qty: {{ item.quantity }}</span>
                         </div>
                     </div>
                     {% endfor %}
-                    
-    
-                    <div class="total"> total : Rs {{ order.total }}/-</div>
-                    <a href="" class="btn checkout">chechout</a>
+                    <div class="total">Total: Rs {{ order.total }}/-</div>
+                    <a href="#" class="btn checkout" data-order-id="{{ order.id }}">Checkout</a>
                 </div>
                 {% endfor %}
-                
-                
             </div>
 
-            
-
-                
         </main>
-
     </div>
-    <script src="{% static 'staff\dashboard.js' %}"></script>
 
+    <script src="{% static 'staff/dashboard.js' %}"></script>
+    <script>
+        document.getElementById("newCartBtn").onclick = function () {
+            document.getElementById("cartModal").style.display = "flex";
+        };
+
+        function closeModal() {
+            document.getElementById("cartModal").style.display = "none";
+        }
+
+        function addItem() {
+            const container = document.getElementById("itemsContainer");
+            const newGroup = document.createElement("div");
+            newGroup.classList.add("item-group");
+    
+            newGroup.innerHTML = `
+                <label>Select Item:</label>
+                <select name="item">
+                    {% for product in products %}
+                    <option value="{{ product.id }}">{{ product.name }}</option>
+                    {% endfor %}
+                </select>
+    
+                <label>Quantity:</label>
+                <input type="number" name="quantity" min="1" value="1">
+            `;
+    
+            container.appendChild(newGroup);
+        }
+    
+        document.addEventListener("DOMContentLoaded", () => {
+
+            document.querySelectorAll(".checkout").forEach(button => {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const orderId = this.dataset.orderId;
+        
+                    if (confirm("Mark this cart as paid?")) {
+                        fetch(`/cart/checkout/${orderId}/`, {
+                            method: "POST",
+                            headers: {
+                                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === "success") {
+                                location.reload();
+                            } else {
+                                alert("Checkout failed: " + data.message);
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Delete handler
+            document.querySelectorAll(".delete-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const cart = this.closest(".shopping-cart");
+                    const orderId = cart.dataset.orderId;
+        
+                    if (confirm("Are you sure you want to delete this cart?")) {
+                        fetch(`/cart/delete/${orderId}/`, {
+                            method: "DELETE",
+                            headers: {
+                                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === "success") {
+                                cart.remove();
+                            } else {
+                                alert("Error deleting cart");
+                            }
+                        });
+                    }
+                });
+            });
+        
+            // Edit handler (basic version: open existing modal prefilled)
+            document.querySelectorAll(".edit-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const cart = this.closest(".shopping-cart");
+                    const orderId = cart.dataset.orderId;
+        
+                    fetch(`/cart/get/${orderId}/`)
+                        .then(res => res.json())
+                        .then(data => {
+                            // Open modal and prefill data
+                            document.getElementById("customer_name").value = data.name;
+                            document.getElementById("is_paid").checked = data.is_paid;
+        
+                            const itemsContainer = document.getElementById("itemsContainer");
+                            itemsContainer.innerHTML = "";
+        
+                            data.items.forEach(item => {
+                                const div = document.createElement("div");
+                                div.classList.add("item-group");
+                                div.innerHTML = `
+                                    <label>Select Item:</label>
+                                    <select name="item">
+                                        ${data.all_products.map(p => `
+                                            <option value="${p.id}" ${p.id === item.id ? "selected" : ""}>
+                                                ${p.name}
+                                            </option>
+                                        `).join("")}
+                                    </select>
+                                    <label>Quantity:</label>
+                                    <input type="number" name="quantity" value="${item.quantity}" min="1">
+                                `;
+                                itemsContainer.appendChild(div);
+                            });
+        
+                            document.getElementById("cartModal").style.display = "flex";
+                            document.getElementById("cartForm").dataset.orderId = orderId;
+                        });
+                });
+            });
+        
+            // Update cart on submit
+            document.getElementById("cartForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const orderId = e.target.dataset.orderId || null;
+                const isEdit = !!orderId;
+                const method = isEdit ? "PUT" : "POST";
+                const url = isEdit ? `/cart/edit/${orderId}/` : "{% url 'create_cart' %}";
+        
+                const customerName = document.getElementById("customer_name").value;
+                const isPaid = document.getElementById("is_paid").checked;
+        
+                const itemGroups = document.querySelectorAll("#itemsContainer .item-group");
+                const items = Array.from(itemGroups).map(group => {
+                    return {
+                        item_id: group.querySelector("select").value,
+                        quantity: group.querySelector("input").value
+                    };
+                });
+        
+                fetch(url, {
+                    method: method,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({
+                        customer_name: customerName,
+                        is_paid: isPaid,
+                        items: items
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        location.reload();
+                    } else {
+                        alert("Error updating cart");
+                    }
+                });
+            });
+        });
+        
+    </script>
+    
+    
     <label for="sidebar-toggle" class="body-label"></label>
 </body>
 
